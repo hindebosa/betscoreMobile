@@ -1,6 +1,8 @@
 const COLORS = {
   text: '#252F40',
-  primary: '#FF4B00',
+  primary: '#d3770f',
+  background: '#2f5a63',
+  lightBlack: '#333333',
   secondary: '#627594',
   tertiary: '#E8AE4C',
   underlineInput: '#dbdbdb',
@@ -11,7 +13,6 @@ const COLORS = {
   greenishCourier: '#044344',
   deepPink: '#DC1F5C',
   primaryGradient: '#4E008E',
-  background: '#FAFAFA',
   backgroundAccent: '#ffffff',
   backgroundInput: '#f0f0f0',
   backgroundShadow: '#f5f5f5',
