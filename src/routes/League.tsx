@@ -3,21 +3,21 @@ import {createStackNavigator} from '@react-navigation/stack';
 import OnboardingPage from '../screens/Onboarding';
 import PersonalInformation from '../screens/Onboarding/personalInformation';
 
-export type OnboardingParamList = {
+export type LeaugeParamList = {
   Onboarding: undefined;
   PersonalInfomation: undefined;
 };
 
-const Onboarding = createStackNavigator<OnboardingParamList>();
+const Onboarding = createStackNavigator<LeaugeParamList>();
 
-export type OnboardingNavigation = NavigationProp<OnboardingParamList>;
+export type LeagueNavigation = NavigationProp<LeaugeParamList>;
 
-export type OnboardingRoute<T extends keyof OnboardingParamList> = RouteProp<
-  OnboardingParamList,
+export type LeagueRoute<T extends keyof LeaugeParamList> = RouteProp<
+  LeaugeParamList,
   T
 >;
 
-const OnboardingRoutes = () => {
+const LeagueRoutes = () => {
   return (
     <Onboarding.Navigator>
       <Onboarding.Screen
@@ -27,15 +27,8 @@ const OnboardingRoutes = () => {
         }}
         component={OnboardingPage}
       />
-      <Onboarding.Screen
-        name="PersonalInfomation"
-        options={{
-          headerShown: false,
-        }}
-        component={PersonalInformation}
-      />
     </Onboarding.Navigator>
   );
 };
 
-export default OnboardingRoutes;
+export default LeagueRoutes;
