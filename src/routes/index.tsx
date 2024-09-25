@@ -43,7 +43,7 @@ export const Routes = () => {
           gestureEnabled: true,
           ...TransitionPresets.ModalPresentationIOS,
         }}
-        initialRouteName="Home">
+        initialRouteName="Auth">
         <Root.Screen name="Onboarding" component={OnboardingRoutes} />
         <Root.Screen name="Auth" component={AuthRoutes} />
         <Root.Screen

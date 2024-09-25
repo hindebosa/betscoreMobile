@@ -2,10 +2,12 @@ import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import SignUp from '../screens/Auth/Signup';
 import SignIn from '../screens/Auth/SignIn';
+import OTPVerify from '../screens/Auth/OtpVerification';
 
 export type AuthParamList = {
   SignUp: undefined;
   SignIn: undefined;
+  OTPVerify: {email: string};
 };
 
 const Auth = createStackNavigator<AuthParamList>();
@@ -33,6 +35,13 @@ const AuthRoutes = () => {
           headerShown: false,
         }}
         component={SignIn}
+      />
+      <Auth.Screen
+        name="OTPVerify"
+        options={{
+          headerShown: false,
+        }}
+        component={OTPVerify}
       />
     </Auth.Navigator>
   );

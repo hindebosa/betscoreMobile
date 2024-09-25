@@ -5,6 +5,8 @@ import {Routes} from './routes';
 import {NavigationContainer} from '@react-navigation/native';
 import {ThemeProvider} from './utils/ThemeProvider';
 import {theme} from './theme/theme';
+import {AuthProvider} from './context/AuthContext';
+import {KeyboardProvider} from 'react-native-keyboard-controller';
 
 function App(): React.JSX.Element {
   const onNavigationReady = useCallback(() => {
@@ -13,9 +15,13 @@ function App(): React.JSX.Element {
 
   return (
     <NavigationContainer>
-      <ThemeProvider theme={theme}>
-        <Routes />
-      </ThemeProvider>
+      {/* <KeyboardProvider> */}
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <Routes />
+        </ThemeProvider>
+      </AuthProvider>
+      {/* </KeyboardProvider> */}
     </NavigationContainer>
   );
 }

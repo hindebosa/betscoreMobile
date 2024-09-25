@@ -3,44 +3,17 @@ import * as React from 'react';
 import {useCallback} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import ProgressBar from 'react-native-progress-step-bar';
-import AnimatedDotsCarousel from 'react-native-progress-step-bar';
 import {theme} from '../../theme/theme';
 import StyledText from '../../components/BText';
-import {Input} from '../../components/Input';
+import InputText from '../../components/Input';
 
 const PersonalInformation = () => {
-  const [currentStep, setCurrentStep] = React.useState(0);
-
-  const handlePrevStep = useCallback(() => {
-    setCurrentStep((prevStep: number) => prevStep - 1);
-  }, []);
-
-  const handleNextStep = useCallback(() => {
-    setCurrentStep((prevStep: number) => prevStep + 1);
-  }, []);
-
   return (
     <Layout>
       <View>
-        <View style={{marginBottom: 50}}>
-          <ProgressBar
-            steps={2}
-            width={325}
-            height={3}
-            currentStep={currentStep}
-            stepToStepAnimationDuration={1000}
-            withDots={false}
-            backgroundBarStyle={{
-              backgroundColor: 'white',
-            }}
-            filledBarStyle={{
-              backgroundColor: theme.colors.primary,
-            }}
-          />
-        </View>
         <View style={{padding: 20}}>
           <StyledText>Personal Infomation</StyledText>
-          <Input
+          <InputText
             placeholder="First Name"
             inputStyle={styles.inputText}
             caretColor={theme.colors.smoothRed}
@@ -48,7 +21,7 @@ const PersonalInformation = () => {
             focusedInputContainerStyle={styles.focusedInputContainerStyle}
             containerStyle={styles.containerStyle}
           />
-          <Input
+          <InputText
             placeholder="Surname"
             inputStyle={styles.inputText}
             caretColor={theme.colors.smoothRed}
@@ -56,7 +29,7 @@ const PersonalInformation = () => {
             focusedInputContainerStyle={styles.focusedInputContainerStyle}
             containerStyle={styles.containerStyle}
           />
-          <Input
+          <InputText
             placeholder="ID Number"
             inputStyle={styles.inputText}
             caretColor={theme.colors.smoothRed}
@@ -64,7 +37,7 @@ const PersonalInformation = () => {
             focusedInputContainerStyle={styles.focusedInputContainerStyle}
             containerStyle={styles.containerStyle}
           />
-          <Input
+          <InputText
             placeholder="Phone Number"
             inputStyle={styles.inputText}
             caretColor={theme.colors.smoothRed}
@@ -72,20 +45,6 @@ const PersonalInformation = () => {
             focusedInputContainerStyle={styles.focusedInputContainerStyle}
             containerStyle={styles.containerStyle}
           />
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            width: 400,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 40,
-          }}>
-          <TouchableOpacity
-            onPress={handleNextStep}
-            style={{backgroundColor: 'green'}}>
-            <Text>NextStep</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </Layout>
