@@ -21,6 +21,12 @@ interface AuthContextType {
   signup: (email: string, password: string) => Promise<void>;
   logout: () => void;
   OTPVerify: (pin: string, email: string) => Promise<void>;
+  updateUser: (
+    fullName: string,
+    phone: string,
+    username: string,
+    idNumber: string,
+  ) => Promise<void>;
 }
 
 interface User {
@@ -79,25 +85,52 @@ export function AuthProvider({children}: {children: ReactNode}) {
     }
   };
 
-  const signup = async (email: string, password: string) => {
-    const {error, data: result} = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    });
+  const updateUser = async (
+    fullName: string,
+    userName: string,
+    phone: string,
+    idNumber: string,
+  ) => {
+    try {
+      const {data, error} = await supabase
+        .from('profiles')
+        .update({
+          full_name: fullName,
+          username: userName,
+          id_number: idNumber,
+          phone: phone,
+        })
+        .eq('id', '8a75df6c-b6a0-4025-8bd1-0fc3ef0861cb')
+        .select();
 
-    if (result) {
-      nav.navigate('Auth', {screen: 'OTPVerify', params: {email: email}});
-      setUser({email});
-    }
-    if (error) {
-      console.log(error);
-    }
+      if (data) {
+        nav.navigate('Home');
+      }
+      if (error) {
+        console.log(error);
+      }
+    } catch (error) {}
+  };
+
+  const signup = async (email: string, password: string) => {
+    nav.navigate('Onboarding', {screen: 'PersonalInfomation'});
+    // const {error, data: result} = await supabase.auth.signUp({
+    //   email: email,
+    //   password: password,
+    // });
+
+    // if (result) {
+    //   nav.navigate('Auth', {screen: 'OTPVerify', params: {email: email}});
+    //   setUser({email});
+    // }
+    // if (error) {
+    //   console.log(error);
   };
 
   const logout = () => {
     // Implement your logout logic here
     // For example, clear any stored tokens
-    setUser(null);
+    // setUser(null);
   };
 
   useEffect(() => {
@@ -133,6 +166,7 @@ export function AuthProvider({children}: {children: ReactNode}) {
     accessToken,
     isAuthenticated,
     loading,
+    updateUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
